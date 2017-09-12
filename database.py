@@ -12,6 +12,8 @@ def connect():    # connect to database
     return psycopg2.connect("dbname=news")
 # establish connection
 if __name__ == '__main__':
+
+
     connection = connect()
     cursor = connection.cursor()
 
@@ -41,7 +43,7 @@ if __name__ == '__main__':
     print "\n"
     # Print most popular article authors
     for row in xrange(len(most_authors)):
-        print ("\"%s\" -- %s views." % (most_authors[row][0],
+        print("\"%s\" -- %s views." % (most_authors[row][0],
                most_authors[row][1]))
     print "\n"
 
@@ -59,7 +61,7 @@ if __name__ == '__main__':
     print "\n"
     # Print dates with error percentages
     for row in xrange(len(most_article)):
-        print ("\"%s\" -- %.2f%%" % (most_article[row][0],
+        print("\"%s\" -- %.2f%%" % (most_article[row][0],
                most_article[row][1]))
     print "\n"
 
