@@ -2,7 +2,7 @@
 Udacity full-stack web developer nanodegree - Logs Analysis (database project)
 
 # Requirements
-To be able to use it, you must have [Python2](https://www.python.org/ftp/python/2.7.13/python-2.7.13.msi) installed on your machine
+To be able to use it, you must have [Python2](https://www.python.org/ftp/python/2.7.13/python-2.7.13.msi), [PostgreSQL](https://www.postgresql.org) & [psycopg2 library](http://initd.org/psycopg/docs/install.html) installed on your machine
 
 # How to use it
 1. clone/download this repository
