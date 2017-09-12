@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 # This is a psql database project submitted to Udacity's
 # full-stack web developer nanodegree
 # You will find the output of this file in output.txt
@@ -15,7 +17,7 @@ if __name__ == '__main__':
 
     # Get most viewed articles
     cursor.execute("""select count(log.path),articles.title from articles
-    inner join log on log.path ilike '%'|| articles.slug || '%' group by
+    inner join log on log.path = '/article/'|| articles.slug group by
     articles.title order by count(log.path) desc limit 3;""")
     most = cursor.fetchall()
 
@@ -30,7 +32,7 @@ if __name__ == '__main__':
     # Get most popular article authors
     cursor.execute("""select au.name, count(loges.path) from authors au
     inner join articles ar on au.id = ar.author inner join log loges
-    on loges.path ilike '%' || ar.slug || '%' group by au.name
+    on loges.path = '/article/' || ar.slug group by au.name
     order by count(loges.path) desc;""")
     most_authors = cursor.fetchall()
 
@@ -46,7 +48,10 @@ if __name__ == '__main__':
     # Get days when request errors were more than 1%
     cursor.execute("""select time::date,100.0 * sum(case when
     status='404 NOT FOUND' THEN 1 ELSE 0 END)/COUNT(*) as xx from log
-    group by time::date order by xx desc limit 1;""")
+    group by time::date
+    having 100.0 * sum(case when status='404 NOT FOUND' THEN 1 ELSE 0 END)
+       / COUNT(*) > 1
+    order by xx desc;""")
     most_article = cursor.fetchall()
 
     # Third section of output
